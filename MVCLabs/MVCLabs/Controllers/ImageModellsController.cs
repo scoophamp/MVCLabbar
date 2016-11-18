@@ -20,7 +20,7 @@ namespace MVCLabs.Controllers
         public ActionResult Index()
         {
             var Image = new List<ImageModell>();
-            var images = Directory.GetFiles(Server.MapPath("/Uploads"));
+            var images = Directory.GetFiles(Server.MapPath("~/Uploads"));
 
             foreach (var img in images)
             {
@@ -37,7 +37,7 @@ namespace MVCLabs.Controllers
         }
 
         // GET: ImageModells/Details/5
-        public ActionResult Details(Guid? id)
+        public ActionResult Details(Guid id)
         {
             if (id == null)
             {
@@ -62,23 +62,23 @@ namespace MVCLabs.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ImageModell image, HttpPostedFileBase file)
+        public ActionResult Create(ImageModell img, HttpPostedFileBase file)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                return View(image);
+                return View(img);
             }
             if (file == null)
             {
                 ModelState.AddModelError("Error", "No choosen file");
-                return View(image);
+                return View(img);
             }
-            file.SaveAs(Path.Combine(Server.MapPath("/Uploads")));
+            file.SaveAs(Path.Combine(Server.MapPath("~/Uploads"),file.FileName));
             return RedirectToAction("Index");
         }
 
         // GET: ImageModells/Edit/5
-        public ActionResult Edit(Guid? id)
+        public ActionResult Edit(Guid id)
         {
             if (id == null)
             {
@@ -109,7 +109,7 @@ namespace MVCLabs.Controllers
         }
 
         // GET: ImageModells/Delete/5
-        public ActionResult Delete(Guid? id)
+        public ActionResult Delete(Guid id)
         {
             if (id == null)
             {
