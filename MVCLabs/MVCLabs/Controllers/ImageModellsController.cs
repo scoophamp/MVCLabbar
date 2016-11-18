@@ -62,17 +62,19 @@ namespace MVCLabs.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name")] ImageModell imageModell)
+        public ActionResult Create(ImageModell image, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
-                imageModell.ID = Guid.NewGuid();
-                db.ImageModells.Add(imageModell);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return View(image);
             }
-
-            return View(imageModell);
+            if (file == null)
+            {
+                ModelState.AddModelError("Error", "No choosen file");
+                return View(image);
+            }
+            file.SaveAs(Path.Combine(Server.MapPath("/Uploads")));
+            return RedirectToAction("Index");
         }
 
         // GET: ImageModells/Edit/5
