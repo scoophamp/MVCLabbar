@@ -29,5 +29,7 @@ namespace MVCLabs.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<MVCLabs.Models.ImageModell> ImageModells { get; set; }
     }
 }
