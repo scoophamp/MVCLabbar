@@ -1,0 +1,30 @@
+﻿@addtaghelper “Microsoft.AspNet.Mvc.TagHelpers”
+    @model PluralSite.Models.Contact
+    @{
+        ViewBag.Title = "Contact page";
+    }
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+
+    <h2>Contact</h2>
+    <form>
+        <label asp-for="Name"></label>
+        <input asp-for="Name" />
+        <label asp-for="Email"></label>
+        <input asp-for="Email" />
+        <label asp-for="Message"></label>
+        <textarea cols="40" rows="4" asp-for="Text"></textarea>
+        <div>
+            <input type="submit" value="Send Message" />
+        </div>
+    </form>
+
+
+
+
+
+
+    
+

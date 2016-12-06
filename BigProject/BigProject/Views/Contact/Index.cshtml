@@ -1,0 +1,24 @@
+﻿@model BigProject.Models.ContactViewModels
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>View</h2>
+<div>
+    <label asp-for="Name"></label>
+    <input asp-for="Name" />
+    <label asp-for="Email"></label>
+    <input type="email" asp-for="Email" />
+    
+    @using (Html.BeginForm("Upload", "Contact", new { enctype = "multipart/form-data" }))
+    {
+        
+        <input type="file" name="file" id="file"/>
+        <input type="submit" value="Upload"/>
+
+
+    }
+
+
+</div>
+

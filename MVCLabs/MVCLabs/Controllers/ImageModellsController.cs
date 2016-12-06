@@ -71,6 +71,7 @@ namespace MVCLabs.Controllers
             if (file == null)
             {
                 ModelState.AddModelError("Error", "No choosen file");
+                
                 return View(img);
             }
             file.SaveAs(Path.Combine(Server.MapPath("~/Uploads"),file.FileName));
@@ -109,6 +110,7 @@ namespace MVCLabs.Controllers
         }
 
         // GET: ImageModells/Delete/5
+       
         public ActionResult Delete(Guid id)
         {
             if (id == null)
