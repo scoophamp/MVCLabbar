@@ -19,21 +19,21 @@ namespace MVCLabs.Controllers
         // GET: ImageModells
         public ActionResult Index()
         {
-            var Image = new List<ImageModell>();
+            var image = new List<ImageModell>();
             var images = Directory.GetFiles(Server.MapPath("~/Uploads"));
 
             foreach (var img in images)
             {
                 var info = new FileInfo(img);
 
-                Image.Add(new ImageModell
+                image.Add(new ImageModell
                 {
 
                     ID = Guid.NewGuid(),
                     Name = info.Name
                 });
             }
-            return View(Image);
+            return View(image);
         }
 
         // GET: ImageModells/Details/5
